@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { texture } from 'three/tsl';
 
 let scene, camera, renderer, model;
 
@@ -36,60 +35,71 @@ function centerAndScaleModel(object) {
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
 
-    object.position.sub(center);  // Move to origin
+    object.position.sub(center);  // Shift to origin
 
     const maxDim = Math.max(size.x, size.y, size.z);
-    object.scale.setScalar(1 / maxDim);  // Normalize to fit in unit box
+    const scale = 1 / maxDim;
+    object.scale.setScalar(scale);  // Fit within unit box
 
-    camera.position.set(0, 0, 2);  // Place camera in front
+    camera.position.set(0, 0, 1);  // Place camera to fit the model
+    camera.lookAt(0, 0, 0);  // Look at the centered model
 }
 
 function loadModel() {
     const loader = new GLTFLoader();
-    loader.load('/models/cat.gltf', (gltf) => {
+    // loader.load('/models/cat.gltf', (gltf) => {
+    loader.load('/josta.glb', (gltf) => {
         model = gltf.scene;
-        // const texture = new THREE.TextureLoader()
-
-        // model.traverse((child) => {
-        //     if (child.isMesh) {
-        //         child.material = new THREE.MeshMatcapMaterial({ 
-        //             matcap : texture.load("/models/textures/Material_0002_baseColor.png"),
-        //             roughness: texture.load("/models/textures/Material_0002_metallicRoughness.png"),
-        //             normalMap: texture.load("/models/textures/Material_0002_normal.png"),
-        //         });
-        //     }
-        // });
 
         const textureLoader = new THREE.TextureLoader();
 
-        model.traverse((child) => {
-            if (child.isMesh) {
-                child.material = new THREE.MeshStandardMaterial({
-                    map: textureLoader.load("/models/textures/Material_0002_baseColor.png"),
-                    roughnessMap: textureLoader.load("/models/textures/Material_0002_metallicRoughness.png"),
-                    normalMap: textureLoader.load("/models/textures/Material_0002_normal.png")
-                });
-            }
-        });
+        // Apply PBR textures to all meshes
+        // model.traverse((child) => {
+        //     if (child.isMesh) {
+        //         // child.material = new THREE.MeshStandardMaterial({
+        //         //     map: textureLoader.load("/models/textures/Material_0002_baseColor.png"),
+        //         //     roughnessMap: textureLoader.load("/models/textures/Material_0002_metallicRoughness.png"),
+        //         //     normalMap: textureLoader.load("/models/textures/Material_0002_normal.png")
+        //         // });
+        //         child.castShadow = true;
+        //         child.receiveShadow = true;
+        //     }
+        // });
 
-
-        centerAndScaleModel(model);
+        centerAndScaleModel(model);  // Center after materials applied
         scene.add(model);
+
         animate();
     });
 }
 
 function animate() {
     requestAnimationFrame(animate);
-    model.rotation.xyz += 0.01;  // Spins around Y-axis correctly now
+
+    if (model) {
+        // model.rotation.y += 0.01;  // Rotate around Y-axis
+        // model.rotation.x += 0.005; // Slight X rotation for depth feel
+    }
+
     renderer.render(scene, camera);
 }
 
 window.addEventListener('scroll', () => {
     if (model) {
         const scrollFactor = window.scrollY / document.body.scrollHeight;
-        model.rotation.y = scrollFactor * Math.PI * 2;
+        model.rotation.x = scrollFactor * Math.PI /15;  // Scroll-based rotation
+        
+        model.rotation.y = scrollFactor * Math.PI * 2;  // Scroll-based rotation
+        
+        model.rotation.z = scrollFactor * Math.PI /15;  // Scroll-based rotation
+
+        // model.position.x = scrollFactor * Math.PI / 15;  // Scroll-based rotation
+        // model.position.y = scrollFactor * Math.PI / 5;  // Scroll-based rotation
+       
+        model.position.z = scrollFactor * Math.PI / 20;  // Scroll-based rotation
+
     }
+
 });
 
 window.addEventListener('resize', () => {
