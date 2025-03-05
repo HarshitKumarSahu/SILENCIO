@@ -76,8 +76,8 @@ loader.load("/canalpha.glb", function (gltf) {
     model.traverse((node) => {
         if (node.isMesh) {
             if (node.material) {
-                // node.material.metalness = 0.3;
-                // node.material.roughness = 0.4;
+                node.material.metalness = 0.95;
+                node.material.roughness = 1;
                 node.material.envMapIntensity = 0.3;
             }
             node.castShadow = true;
