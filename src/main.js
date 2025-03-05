@@ -69,7 +69,7 @@ const loader = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/"); // Use Google's Draco decoder CDN
 loader.setDRACOLoader(dracoLoader);
-loader.load("/canalpha.glb", function (gltf) {
+loader.load("/glb/canalpha.glb", function (gltf) {
     model = gltf.scene;  // Fixed: it should be gltf.scene, not glft.screen
 
     model.traverse((node) => {
@@ -123,7 +123,7 @@ const stickyHeight = window.innerHeight;
 const scannerSection = document.querySelector(".scanner");
 const scannerPosition = scannerSection.offsetTop;
 const scanContainer = document.querySelector(".scan-container");
-const scanSound = new Audio("beep.mp3");
+const scanSound = new Audio("/audio/beep.mp3");
 
 gsap.set(scanContainer, { scale: 0 });
 

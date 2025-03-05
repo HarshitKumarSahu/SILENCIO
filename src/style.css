@@ -1,14 +1,14 @@
 @font-face {
     font-family: pt;
-    src: url("/PTMono-Regular.ttf");
+    src: url("/fonts/PTMono-Regular.ttf");
 }
 @font-face {
     font-family: nt;
-    src: url("/NeueThin.woff2");
+    src: url("/fonts/NeueThin.woff2");
 }
 @font-face {
     font-family: nr;
-    src: url("/NeueRoman.woff2");
+    src: url("/fonts/NeueRoman.woff2");
 }
 ::-webkit-scrollbar {
     display: none;
