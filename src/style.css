@@ -211,7 +211,7 @@ p {
     flex-shrink: 0;
     gap: var(--gap);
     min-width: 100%;
-    animation: leftMarquee 20000ms linear infinite;
+    /* animation: leftMarquee 20000ms linear infinite; */
 }
 
 .hero_left_marque_inner li {
@@ -273,7 +273,7 @@ p {
     flex-shrink: 0;
     gap: var(--gap);
     min-width: 100%;
-    animation: rightMarquee 20000ms linear infinite;
+    /* animation: rightMarquee 20000ms linear infinite; */
 }
 
 .hero_right_marque_inner li {

@@ -248,3 +248,54 @@ function animate() {
 document.body.addEventListener('click', () => {
     audioElement.play().catch(e => console.warn("Audio play failed:", e));
 });
+
+
+function setupLeftMarquee() {
+    const marquees = document.querySelectorAll('.hero_left_marque_inner');
+
+    marquees.forEach(marquee => {
+        const totalWidth = marquee.scrollWidth;
+
+        gsap.fromTo(marquee,
+            { x: 0 },
+            {
+                x: () => -totalWidth, // Scroll left (negative x)
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
+    });
+}
+
+function setupRightMarquee() {
+    const marquees = document.querySelectorAll('.hero_right_marque_inner');
+
+    marquees.forEach(marquee => {
+        const totalWidth = -marquee.scrollWidth;
+
+        gsap.fromTo(marquee,
+            { x: 0 },
+            {
+                x: () => totalWidth, // Scroll right (positive x)
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "body",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
+    });
+}
+
+// Initialize both separately
+setupLeftMarquee();
+setupRightMarquee();
