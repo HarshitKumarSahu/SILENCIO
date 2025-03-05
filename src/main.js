@@ -4,7 +4,6 @@ import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { mod } from 'three/tsl';
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 
 
