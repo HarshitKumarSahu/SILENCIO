@@ -244,11 +244,6 @@ function animate() {
 }
 
 
-document.body.addEventListener('click', () => {
-    audioElement.play().catch(e => console.warn("Audio play failed:", e));
-});
-
-
 function setupLeftMarquee() {
     const marquees = document.querySelectorAll('.hero_left_marque_inner');
 
@@ -298,3 +293,16 @@ function setupRightMarquee() {
 // Initialize both separately
 setupLeftMarquee();
 setupRightMarquee();
+
+gsap.to(".blinking-text span", {
+    opacity: 0,
+    repeat: -1,
+    yoyo: true,
+    duration: 0.8, // adjust speed
+    ease: "power1.inOut"
+});
+
+const button = document.querySelector(".blinking-text")
+button.addEventListener('click', () => {
+    audioElement.play().catch(e => console.warn("Audio play failed:", e));
+});

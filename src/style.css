@@ -211,7 +211,7 @@ section {
 }
 .hero p:first-child {
     margin-top: -3em;
-    margin-bottom: 4em;
+    margin-bottom: 1em;
     font-size: 1vw;
 }
 .hero p {
@@ -267,6 +267,17 @@ section {
     width: 70%;
     text-align: center;
 }
+
+.blinking-text {
+    font-size: 1em;
+    color: red; 
+    padding: 0.5em 4em;
+    border: 1px solid red;
+    border-radius: 2em;
+    background-color: transparent;
+    font-weight: 300;
+}
+
 
 @media screen and (max-width : 600px) {
     h1 {
@@ -326,8 +337,8 @@ section {
         text-align: center;
     }
     .hero p:first-child {
-        margin-top: -2em;
-        margin-bottom: 2em;
+        margin-top: -0.5em;
+        margin-bottom: 1em;
         font-size: 4.5vw;
         width: 70%;
     }
@@ -382,4 +393,12 @@ section {
         width: 75%;
         text-align: center;
     }
+    .blinking-text {
+        font-size: 1em; 
+        padding: 0.5em 2em;
+        margin-bottom: 5em;
+        position: absolute;
+        top: 2.5em;
+    }
+    
 }
