@@ -306,14 +306,3 @@ const button = document.querySelector(".blinking-text")
 button.addEventListener('click', () => {
     audioElement.play().catch(e => console.warn("Audio play failed:", e));
 });
-
-const handleResize = () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-};
-window.addEventListener('resize', handleResize);
-handleResize();
