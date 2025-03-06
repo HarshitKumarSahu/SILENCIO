@@ -276,6 +276,7 @@ section {
     border-radius: 2em;
     background-color: transparent;
     font-weight: 300;
+    z-index: 99;
 }
 
 
